@@ -35,19 +35,20 @@ thats 3815.40/sec
 
 ### nimkeyvalue Performance
 
-*IMPORTANT: build server.nim with --threads:on*
+*IMPORTANT: build server.nim with --threads:on -d:realese *
 
 ```
-# Fetching non-existent key: 112714 req/sec :( my computer??
+# Fetching non-existent key: 197865 req/sec :) my computer??
 wrk# ./wrk -t2 -c100 -d10s http://localhost:3000/key/sd
 Running 10s test @ http://localhost:3000/key/sd
   2 threads and 100 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     1.31ms    1.91ms  21.32ms   87.54%
-    Req/Sec    56.71k     5.00k   68.23k    69.50%
-  1135563 requests in 10.07s, 114.79MB read
-Requests/sec: 112714.83
-Transfer/sec:     11.39MB
+    Latency     1.38ms    2.33ms  24.41ms   86.92%
+    Req/Sec    99.50k     5.61k  111.64k    71.00%
+  1979126 requests in 10.00s, 200.07MB read
+Requests/sec: 197865.09
+Transfer/sec:     20.00MB
+
 
 # nim c -r thrasher.nim
 starting thrasher
