@@ -1,0 +1,23 @@
+FROM ubuntu:16.04
+
+# system basics
+RUN apt-get update && \
+  apt-get -y --no-install-recommends install \
+    curl \
+    python3 \
+    python3-dev \
+    python3-setuptools \
+    python3-pip \
+    libffi-dev \
+    nginx \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+WORKDIR /
+ENV PATH ${PATH}:/mkv
+
+COPY requirements.txt mkv/requirements.txt
+RUN pip3 install --no-cache-dir -r mkv/requirements.txt
+
+COPY rtest.sh bringup.sh master server rebalance rebuild volume.sh test.py mkv/
+WORKDIR /mkv

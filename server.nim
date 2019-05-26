@@ -7,6 +7,17 @@ proc onRequest(req: Request): Future[void] =
     of "/":
       req.send("Hello World")
     else:
-      req.send(Http404)
+      #redirect to volume server
+      req.send(Http302)
+  elif req.httpMethod == some(HttpPut):
+    req.send("PUTTED")
+    req.send(Http201)
+  elif req.httpMethod == some(HttpDelete):
+    req.send("DELETED")
+    req.send(Http202)
+    #if (key not found):
+    #    req.send(Http204)
 
-run(onRequest)
+let settings = initSettings(Port(3000))
+
+run(onRequest, settings)
