@@ -6,7 +6,7 @@
         {
             "label": "echo",
             "type": "shell",
-            "command": "docker exec 9a65b9a7cbc2 nim c ${file}",
+            "command": "docker exec 9a65b9a7cbc2 nim c --threads:on ${file}",
             "group": {
                 "kind": "build",
                 "isDefault": true
